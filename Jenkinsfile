@@ -1,10 +1,7 @@
 pipeline {
 
   agent any
-  environment {
-        PLATFORM_CRED = credentials('platform-cred')
-        
-      }
+  
   stages {
     stage('Build') {
       steps {
