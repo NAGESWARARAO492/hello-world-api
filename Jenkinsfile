@@ -12,7 +12,7 @@ pipeline {
          CAPPCLIENT_SECRET = credentials('connectedAppClient_secret')
             }
       steps {
-            bat 'mvn -B -U -e -V clean -DskipTests package -DconnectedAppClientId=%CAPPCLIENT_ID% -DconnectedAppClientSecret=%CAPPCLIENT_SECRET%'
+            bat 'mvn clean install -DconnectedAppClientId=${CAPPCLIENT_ID} -DconnectedAppClientSecret=${CAPPCLIENT_SECRET}'
       }
     }
 
