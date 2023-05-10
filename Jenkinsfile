@@ -1,25 +1,19 @@
 pipeline {
 
   agent any
-  
-  stages {
-    stage('Build') {
-    environment {
+  environment {
 		 CAPPCLIENT_ID = credentials('connectedAppClient_id')
          CAPPCLIENT_SECRET = credentials('connectedAppClient_secret')
             }
-      steps {
-            bat 'mvn -B -U -e -V clean -DskipTests package -DconnectedAppClientId=%CAPPCLIENT_ID% -DconnectedAppClientSecret=%CAPPCLIENT_SECRET%'
-      }
-    }
-
+  stages {
+    
     stage('Test') {
       steps {
           echo  'hello world Munit test case'
       }
     }
 
-     stage('Deployment develop')      {
+     stage('Deployment dev')      {
          
          environment {
 		 CAPPCLIENT_ID = credentials('connectedAppClient_id')
