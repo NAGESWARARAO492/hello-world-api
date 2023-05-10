@@ -1,0 +1,5 @@
+# Common File to be use in All env
+application:
+  name: "sample-app"
+milestone:
+  category: "LOG"

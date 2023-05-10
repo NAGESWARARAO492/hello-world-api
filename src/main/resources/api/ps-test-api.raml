@@ -1,0 +1,17 @@
+#%RAML 1.0
+title: ps-test-api
+version: v1
+protocols: [HTTP, HTTPS]
+
+/test:
+  post:
+    body:
+      application/json:
+        example: { "message": "help Mr.Nageswara Rao"  }
+    responses:
+      201:
+        body:
+          application/json:
+            example: { "message": "welcome to Prowess" }
+            
+    
