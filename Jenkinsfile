@@ -23,11 +23,11 @@ pipeline {
          environment {
         CLIENT_ID = credentials('dev-client-d')
         CLIENT_SECRET = credentials('dev-client-secret')
-        CAppCLIENT_ID = credentials('connectedAppClient_id')
-        CAppCLIENT_SECRET = credentials('connectedAppClient_secret')
+        CAPPCLIENT_ID = credentials('connectedAppClient_id')
+        CAPPCLIENT_SECRET = credentials('connectedAppClient_secret')
       }
          steps {
-            bat 'mvn -U -V -e -B -DskipTests deploy -Pdev -DmuleDeploy -DconnectedAppClientId=%CAppCLIENT_ID% -DconnectedAppClientSecret=%CAppCLIENT_SECRET% -Danypoint.platform.client_id=%CLIENT_ID% -Danypoint.platform.client_secret=%CLIENT_SECRET%'
+            bat 'mvn -U -V -e -B -DskipTests deploy -Pdev -DmuleDeploy -DconnectedAppClientId=%CAPPCLIENT_ID% -DconnectedAppClientSecret=%CAPPCLIENT_SECRET% -Danypoint.platform.client_id=%CLIENT_ID% -Danypoint.platform.client_secret=%CLIENT_SECRET%'
       }
     }
 	 stage('Deployment qa')      {
