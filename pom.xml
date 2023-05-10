@@ -9,7 +9,7 @@
 	<version>1.0.2</version>
 	<packaging>mule-application</packaging>
 	<name>hello-world-api</name>
-	<description/>
+	<description />
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8
@@ -100,7 +100,9 @@
 					<cloudHubDeployment>
 						<uri>https://anypoint.mulesoft.com</uri>
 						<muleVersion>${app.runtime}</muleVersion>
-						<server>exchange-repository</server>
+						<connectedAppGrantType>client_credentials</connectedAppGrantType>
+						<connectedAppClientId>${connectedAppClientId}</connectedAppClientId>
+						<connectedAppClientSecret>${connectedAppClientSecret}</connectedAppClientSecret>
 						<properties>
 							<http.port>${http.port}</http.port>
 							<anypoint.platform.base_uri>https://anypoint.mulesoft.com/
@@ -111,7 +113,7 @@
 					</cloudHubDeployment>
 				</configuration>
 			</plugin>
-			
+
 		</plugins>
 	</build>
 	<dependencies>

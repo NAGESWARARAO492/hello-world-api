@@ -3,7 +3,7 @@ pipeline {
   agent any
   environment {
         PLATFORM_CRED = credentials('platform-cred')
-        MVN_SET = credentials('maven-settings') 
+        
       }
   stages {
     stage('Build') {
@@ -11,26 +11,23 @@ pipeline {
             bat 'mvn -B -U -e -V clean -DskipTests package'
       }
     }
-	  stage('mvn test settings') {
-            steps {
-                sh 'mvn -s $MVN_SET help:effective-settings'
-            }
-        }
-
+	 
     stage('Test') {
       steps {
           echo  'hello world Munit test case'
       }
     }
 
-     stage('Deployment develop')      {
+     stage('Deployment dev')      {
          
          environment {
         CLIENT_ID = credentials('dev-client-d')
         CLIENT_SECRET = credentials('dev-client-secret')
+        CAppCLIENT_ID = credentials('connectedAppClient_id')
+        CAppCLIENT_SECRET = credentials('connectedAppClient_secret')
       }
          steps {
-            bat 'mvn -U -V -e -B -DskipTests deploy -Pdev -DmuleDeploy -Dusername=%PLATFORM_CRED_USR% -Dpassword=%PLATFORM_CRED_PSW% -Danypoint.platform.client_id=%CLIENT_ID% -Danypoint.platform.client_secret=%CLIENT_SECRET%'
+            bat 'mvn -U -V -e -B -DskipTests deploy -Pdev -DmuleDeploy -DconnectedAppClientId=%CAppCLIENT_ID% -DconnectedAppClientSecret=%CAppCLIENT_SECRET% -Danypoint.platform.client_id=%CLIENT_ID% -Danypoint.platform.client_secret=%CLIENT_SECRET%'
       }
     }
 	 stage('Deployment qa')      {
@@ -40,7 +37,7 @@ pipeline {
         CLIENT_SECRET = credentials('qa-client-secret')
       }
          steps {
-            bat 'mvn -U -V -e -B -DskipTests deploy -Pqa -DmuleDeploy -Dusername=%PLATFORM_CRED_USR% -Dpassword=%PLATFORM_CRED_PSW% -Danypoint.platform.client_id=%CLIENT_ID% -Danypoint.platform.client_secret=%CLIENT_SECRET%'
+            bat 'mvn -U -V -e -B -DskipTests deploy -Pqa -DmuleDeploy -DconnectedAppClientId=%CAppCLIENT_ID% -DconnectedAppClientSecret=%CAppCLIENT_SECRET% -Danypoint.platform.client_id=%CLIENT_ID% -Danypoint.platform.client_secret=%CLIENT_SECRET%'
       }
     }
     
