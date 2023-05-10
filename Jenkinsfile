@@ -2,17 +2,13 @@ pipeline {
 
   agent any
   environment {
-		 CAPPCLIENT_ID = credentials('connectedAppClient_id')
-         CAPPCLIENT_SECRET = credentials('connectedAppClient_secret')
+		 CAPPCRED = credentials('ConnectedAppCred')
             }
   stages {
     stage('Build') {
-    environment {
-		 CAPPCLIENT_ID = credentials('connectedAppClient_id')
-         CAPPCLIENT_SECRET = credentials('connectedAppClient_secret')
-            }
+    
       steps {
-            bat 'mvn clean install -DconnectedAppClientId=${CAPPCLIENT_ID} -DconnectedAppClientSecret=${CAPPCLIENT_SECRET}'
+            bat 'mvn -B -U -e -V clean -DskipTests package -Duser=%CAPPCRED_USR% -Dpswd=%CAPPCRED_PSW%'
       }
     }
 
