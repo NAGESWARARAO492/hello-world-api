@@ -169,7 +169,7 @@
 		<repository>
 			<id>MuleRepository</id>
 			<name>MuleRepository</name>
-			<url>https://repository.mulesoft.org/nexus-ee/content/repositories/releases-ee/</url>
+			<url>https://anypoint.mulesoft.com/exchange/</url>
 			<layout>default</layout>
 			<releases>
 				<enabled>true</enabled>
