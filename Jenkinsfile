@@ -6,7 +6,16 @@ pipeline {
          CAPPCLIENT_SECRET = credentials('connectedAppClient_secret')
             }
   stages {
-    
+    stage('Build') {
+    environment {
+		 CAPPCLIENT_ID = credentials('connectedAppClient_id')
+         CAPPCLIENT_SECRET = credentials('connectedAppClient_secret')
+            }
+      steps {
+            bat 'mvn -B -U -e -V clean -DskipTests package -DconnectedAppClientId=%CAPPCLIENT_ID% -DconnectedAppClientSecret=%CAPPCLIENT_SECRET%'
+      }
+    }
+
     stage('Test') {
       steps {
           echo  'hello world Munit test case'
@@ -16,7 +25,7 @@ pipeline {
      stage('Deployment dev')      {
          
          environment {
-		 CAPPCLIENT_ID = credentials('connectedAppClient_id')
+		CAPPCLIENT_ID = credentials('connectedAppClient_id')
         CAPPCLIENT_SECRET = credentials('connectedAppClient_secret')
         CLIENT_ID = credentials('dev-client-d')
         CLIENT_SECRET = credentials('dev-client-secret')
