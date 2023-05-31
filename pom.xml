@@ -63,7 +63,7 @@
 						<extensions>true</extensions>
 						<configuration>
 							<cloudHubDeployment>
-								<applicationName>pro-hello-world-papi-${mule.env}</applicationName>
+								<applicationName>pro-helo-world-papi-${mule.env}</applicationName>
 								<environment>${mule.env}</environment>
 								<region>us-east-1</region>
 								<workers>1</workers>
@@ -100,8 +100,8 @@
 						<uri>https://anypoint.mulesoft.com</uri>
 						<muleVersion>${app.runtime}</muleVersion>
 						<connectedAppGrantType>client_credentials</connectedAppGrantType>
-						<connectedAppClientId>${user}</connectedAppClientId>
-						<connectedAppClientSecret>${pswd}</connectedAppClientSecret>
+						<connectedAppClientId>70fce65766424875ad56306f896533b6</connectedAppClientId>
+						<connectedAppClientSecret>7680c66B32884f34b06dD51bF1057E78</connectedAppClientSecret>
 						<properties>
 							<http.port>${http.port}</http.port>
 							<anypoint.platform.base_uri>https://anypoint.mulesoft.com/
